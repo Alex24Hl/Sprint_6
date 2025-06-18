@@ -16,6 +16,11 @@ class BasePage:
     @allure.step('Метод выполняющий ожидание элемента')
     def wait(self, locator):
         return WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(locator))
+
+    @allure.step('Метод получает текст элемента')
+    def get_text(self, locator):
+        element = self.wait(locator)
+        return element.text
     
     @allure.step('Метод выполняющий клик по элементу')
     def click(self, locator):
@@ -29,3 +34,7 @@ class BasePage:
     def scroll(self, locator):
         element = self.driver.find_element(*locator)
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+
+    @allure.step('Метод переключения вкладок')
+    def switch_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])

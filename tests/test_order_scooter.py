@@ -22,6 +22,7 @@ class TestOrderScooter:
                              [(HeaderLocators.HEADER_ORDER_BUTTON, Data.TEST_USER_ONE),
                               (HeaderLocators.FOOTER_ORDER_BUTTON, Data.TEST_USER_TWO)])
 
+    @allure.title('Тест "Заказ самоката"')
     def test_order_scooter(self, driver, header_order_button, user):
         with allure.step('Инициализируем драйвер'):
             main_page = MainPage(driver)
@@ -61,23 +62,19 @@ class TestOrderScooter:
         with allure.step('Шаг 6. Кликаем на кнопку "Заказать"'):
             rental_page.click_order_button()
             with allure.step('На экране появился окно "Хотите оформить заказ?"'):
-                pass
-            with allure.step('На экране также есть кнопка "Да"'):
-                pass
+                rental_page.check_order_window()
         with allure.step('Шаг 7. Кликаем на кнопку "Да"'):
             rental_page.click_yes_button()
             with allure.step('На экране появилось окно с заказом и кнопкой "Посмотреть статус"'):
-                pass
+                rental_page.check_order_status()
         with allure.step('Шаг 8. Кликаем на кнопку "Посмотреть статус"'):
             rental_page.click_status_button()
             with allure.step('Открылась страница проверки статуса заказа'):
                 status_page = StatusPage(driver)
                 status_page.check_load_status_page()
-            with allure.step('На экране присутствует логотип "Яндекс"'):
-                pass
         with allure.step('Шаг 9. Кликаем по логотипу "Яндекс"'):
             status_page.click_yandex_logo()
             with allure.step('Осуществился редирект на экран "Яндекс.Дзен"'):
-                driver.switch_to.window(driver.window_handles[-1])
+                status_page.switch_window()
                 yandex_page = YandexPage(driver)
                 yandex_page.check_load_dzen_page()

@@ -71,3 +71,11 @@ class RentalPage(BasePage):
     @allure.step('Выполняем клик по кнопке "Посмотреть статус"')
     def click_status_button(self):
         self.click(OrderModalLocators.CHECK_STATUS_BUTTON)
+
+    @allure.step('Проверяем появление окна "Хотите оформить заказ?"')
+    def check_order_window(self):
+        self.wait(OrderModalLocators.ORDER_HEADERS)
+
+    @allure.step('Проверяем появление окна "Заказ оформлен')
+    def check_order_status(self):
+        self.wait(OrderModalLocators.ORDER_DONE)

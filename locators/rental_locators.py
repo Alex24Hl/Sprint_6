@@ -26,3 +26,6 @@ class OrderModalLocators:
     YES_BUTTON = [By.XPATH, '//button[text()="Да"]']
     INFORMATION_ABOUT_ORDER = [By.CLASS_NAME, 'Order_Text__2broi']
     CHECK_STATUS_BUTTON = [By.XPATH, '//button[text()="Посмотреть статус"]']
+    ORDER_HEADERS = [By.XPATH, '//*[contains(., "Хотите оформить заказ?")]']
+    ORDER_DONE = [By.XPATH, '//*[contains(., "Заказ оформлен")]']
+
